@@ -8,11 +8,23 @@ class SecondScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-              title: Text(
-                "secondscreen",
-                style: GoogleFonts.elMessiri(color: Colors.red),
-              )),
-        ));
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ImageIcon(AssetImage("assets/images/flower.png"),
+                color: Color(0xffC9B4FF)),
+            Text("AliceCare",
+                style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 24,
+                    color: Colors.black))
+          ],
+        ),
+        centerTitle: true,
+      ),
+    ));
   }
 }
