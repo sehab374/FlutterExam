@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'item.dart';
+import 'item_divider.dart';
+import 'itemface.dart';
 
 class FirstScreen extends StatefulWidget {
   static const String routeName = "firstscreen";
@@ -9,348 +13,159 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  int index = 0;
+  //int index = 0;
+  int currentIndex = 0;
+
+  List<Widget> images = [
+    Image.asset("assets/images/slider1.png"),
+    Image.asset("assets/images/slider2.png"),
+    Image.asset("assets/images/slider3.png"),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              title: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 0),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 25),
-                  child: Text(
-                    "Moody",
-                    style: TextStyle(
-                        color: Color(0xff000000),
-                        fontSize: 24,
-                        fontWeight: FontWeight.w400),
+        child: Padding(
+      padding: const EdgeInsets.all(20),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Text(
+            "Moody",
+            style: TextStyle(
+                color: Color(0xff000000),
+                fontSize: 24,
+                fontWeight: FontWeight.w400),
+          ),
+          leading: Container(
+              padding: EdgeInsets.only(top: 10, left: 15),
+              // width: 20,
+              // height: 30,
+              child: Image.asset(
+                "assets/images/tree.jpeg",
+                width: 20,
+                height: 20,
+              )),
+          actions: [
+            Container(
+              margin: EdgeInsets.only(top: 20, right: 10),
+              child: Badge(
+                  child: ImageIcon(
+                    AssetImage("assets/images/ringicon.png"),
+                    color: Colors.black,
                   ),
-                ),
-              ),
-              leading: Container(
-                  padding: EdgeInsets.only(top: 15, left: 25),
-                  width: 28,
-                  height: 32,
-                  child: Image.asset(
-                    "assets/images/tree.jpeg",
-                    width: double.infinity,
-                    height: double.infinity,
-                  )),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.all(25),
-                  child: Badge(
-                    label: Text("1"),
-                    child: Icon(
-                      Icons.notifications_none,
-                      color: Color(0xff000000),
-                      size: 30,
+                  smallSize: 8),
+            )
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(10),
+          child: SingleChildScrollView(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(children: [
+                    Text(
+                      "Hello, ",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
                     ),
-                  ),
-                )
-              ],
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(25),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Row(children: [
-                      Text(
-                        "Hello, ",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 20),
-                      ),
-                      Text(
-                        "Sara Rose",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 20),
-                      ),
-                    ]),
-                    Container(
-                        margin: EdgeInsets.symmetric(vertical: 15),
-                        child: Text("How are you feeling today ?")),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Image.asset("assets/images/love.png"),
-                                Text("Love",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14))
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Image.asset("assets/images/cool.png"),
-                                Text(
-                                  "cool",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Image.asset("assets/images/happy.png"),
-                                Text("happy",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14))
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Image.asset("assets/images/sadd.png"),
-                                Text("sad",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14))
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    //////////////////////////////////////////////////Feature and See more
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Feature",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 18)),
-                        Row(
-                          children: [
-                            Text("See more",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14,
-                                    color: Colors.green)),
-                            Icon(
-                              Icons.arrow_forward_ios_outlined,
-                              color: Colors.green,
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                    ///////////////////////////////////////////////Exercise and See more
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Exercise",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 18)),
-                          Row(
-                            children: [
-                              Text("See more",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14,
-                                      color: Colors.green)),
-                              Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                color: Colors.green,
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    ////////////////////////////////////////relax and mede
-                    Row(
-                      children: [
-                        //////////////////////////////////relax
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Color(0xffB692F6).withOpacity(.5),
-                                border:
-                                Border.all(color:  Color(0xffB692F6).withOpacity(.5), width: 1)),
-                            //color: Color(0xffB692F6).withOpacity(.5),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ImageIcon(
-                                  AssetImage("assets/images/relaxation.png"),
-                                  color: Color(0xffB692F6),
-                                ),
-                                SizedBox(width: 10),
-                                Text("Relaxation",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14,
-                                        color: Colors.black))
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-
-                        //////////////////////////////////medetation
-
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Color(0xffFAA7E0).withOpacity(.5),
-                                border:
-                                    Border.all(color:  Color(0xffFAA7E0).withOpacity(.5), width: 1)),
-                            //color: Color(0xffFAA7E0).withOx`pacity(.5),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ImageIcon(
-                                  AssetImage("assets/images/medetation.png"),
-                                  color: Color(0xffFAA7E0),
-                                ),
-                                SizedBox(width: 10),
-                                Text("meditation",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14,
-                                        color: Colors.black))
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    /////////////////////////////////////////////////////////////////////////////brething and yoga
-                    Row(
-                      children: [
-                        //////////////////////////////////brething
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Color(0xffFEB273).withOpacity(.5),
-                                border:
-                                Border.all(color:  Color(0xffFEB273).withOpacity(.5), width: 1)),
-                            //color: Color(0xffFEB273).withOpacity(.5),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ImageIcon(
-                                  AssetImage("assets/images/breating.png"),
-                                  color: Color(0xffFEB273),
-                                ),
-                                SizedBox(width: 10),
-                                Text("Beathing",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14,
-                                        color: Colors.black))
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-
-                        //////////////////////////////////Yoga
-
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Color(0xff7CD4FD).withOpacity(.5),
-                                border:
-                                Border.all(color:  Color(0xff7CD4FD).withOpacity(.5), width: 1)),
-                            //color: Color(0xff7CD4FD).withOpacity(.5),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ImageIcon(
-                                  AssetImage("assets/images/yoga.png"),
-                                  color: Color(0xff7CD4FD),
-                                ),
-                                SizedBox(width: 10),
-                                Text("Yoga",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14,
-                                        color: Colors.black))
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
+                    Text(
+                      "Sara Rose",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
                     ),
                   ]),
-            ),
-            ///////////////////////////////////////////////////////////////bottom navigation bar
+                  Container(
+                      margin: EdgeInsets.symmetric(vertical: 15),
+                      child: Text("How are you feeling today ?",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: Color(0xff371B34)))),
+                  Row(
+                    children: [
+                      ItemFace("assets/images/lovee.png", "Love"),
+                      ItemFace("assets/images/cooll.png", "Cool"),
+                      ItemFace("assets/images/happyy.png", "Happy"),
+                      ItemFace("assets/images/saddd.png", "Sad"),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  ItemDivider("Feature","See more",Colors.green),
+                  Column(
+                    children: [
+                      CarouselSlider(
+                        options: CarouselOptions(
+                          ////////////////req
+                          autoPlay: true,
+                          height: 200,
+                          //disableCenter: true,
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          autoPlayAnimationDuration:
+                              Duration(microseconds: 8000),
+                          autoPlayInterval: Duration(seconds: 2),
+                          enlargeCenterPage: true,
+                          aspectRatio: 2.0,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              currentIndex = index;
+                            });
+                          },
+                        ),
 
-            bottomNavigationBar: BottomNavigationBar(
-                selectedItemColor: Colors.green,
-                unselectedItemColor: Colors.black,
-                currentIndex: index,
-                onTap: (value) {
-                  index = value;
-                  setState(() {});
-                },
-                items: [
-                  BottomNavigationBarItem(
-                      icon: ImageIcon(AssetImage("assets/images/home.png")),
-                      label: "*",
-                      backgroundColor: Colors.white),
-                  BottomNavigationBarItem(
-                      icon: ImageIcon(AssetImage("assets/images/req.png")),
-                      label: "*",
-                      backgroundColor: Colors.white),
-                  BottomNavigationBarItem(
-                      icon: ImageIcon(AssetImage("assets/images/calen.png")),
-                      label: "*",
-                      backgroundColor: Colors.white),
-                  BottomNavigationBarItem(
-                      icon: ImageIcon(AssetImage("assets/images/person.png")),
-                      label: "*",
-                      backgroundColor: Colors.white),
-                ])));
+                        items: images, ///////////////////////req
+                      ),
+                      AnimatedSmoothIndicator(
+                        activeIndex: currentIndex,
+                        count: images.length,
+                        effect: WormEffect(
+                          dotHeight: 6,
+                          dotWidth: 6,
+                          spacing: 5,
+                          dotColor: Color(0xffD9D9D9),
+                          activeDotColor: Color(0xff98A2B3),
+                          paintStyle: PaintingStyle.fill,
+                        ),
+                      ),
+                    ],
+                  ),
+                  ItemDivider("Exercise","See more",Colors.green),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Item("assets/images/relaxation.png", "Relaxation",
+                          Color(0xffB692F6)),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Item("assets/images/medetation.png", "meditation",
+                          Color(0xffFAA7E0)),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Item("assets/images/breating.png", "Beathing",
+                          Color(0xffFEB273)),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Item("assets/images/yoga.png", "Yoga", Color(0xff7CD4FD)),
+                    ],
+                  ),
+                ]),
+          ),
+        ),
+      ),
+    ));
   }
 }
